@@ -1,0 +1,6 @@
+# Optional LangChain integration dependencies.
+#
+# LangChain 1.x requires a modern Python 3 runtime. Keep this separate from
+# Django's legacy install metadata so the core framework package remains usable
+# in the Python versions supported by this branch.
+langchain==1.2.15
