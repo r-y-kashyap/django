@@ -1,0 +1,39 @@
+===========================
+Using LangChain with Django
+===========================
+
+This document explains how to install LangChain for projects built with this
+Django source tree.
+
+Installing LangChain
+====================
+
+LangChain is an optional dependency. It is not installed automatically with
+Django because current LangChain releases require a modern Python 3 runtime,
+while this Django branch keeps its legacy Python compatibility metadata.
+
+Install the optional dependency set with pip::
+
+    python3 -m pip install -r requirements/langchain.txt
+
+The requirements file pins the current LangChain release tested for this
+branch.
+
+Using LangChain from a Django view
+==================================
+
+After installing the optional dependencies, import LangChain APIs from your
+application code. For example, a view can build a prompt template and return the
+formatted prompt::
+
+    from django.http import HttpResponse
+    from langchain_core.prompts import PromptTemplate
+
+    def prompt_preview(request):
+        template = PromptTemplate.from_template("Tell me about {topic}.")
+        return HttpResponse(template.format(topic="Django"))
+
+LLM provider packages, API keys, and model configuration depend on the provider
+you choose. Install those packages separately and keep credentials in your
+deployment environment rather than in Django settings files committed to source
+control.
